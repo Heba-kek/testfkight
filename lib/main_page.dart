@@ -72,7 +72,7 @@ class _MainPageState extends State<MainPage>
   @override
   void initState() {
     super.initState();
-    tabController = TabController(length: 5, vsync: this);
+    tabController = TabController(length: 2, vsync: this);
     bottomTabController = TabController(length: 4, vsync: this);
     _createMarker();
     markers = _createMarker();
@@ -103,18 +103,19 @@ class _MainPageState extends State<MainPage>
     Widget tabBar = TabBar(
       tabs: [
 
-        Tab(text: 'Clothes'),
-        Tab(text: 'Technology'),
         Tab(text: 'Foods'),
-        Tab(text: 'Resturant'),
-        Tab(text: 'SuperMarket'),
+        Tab(text: 'Beauty'),
+
 
       ],
+      indicatorSize: TabBarIndicatorSize.tab,
+
       labelStyle: TextStyle(fontSize: 16.0),
       unselectedLabelStyle: TextStyle(
         fontSize: 14.0,
       ),
       labelColor: darkGrey,
+
       unselectedLabelColor: Color.fromRGBO(0, 0, 0, 0.5),
       isScrollable: true,
       controller: tabController,

@@ -32,14 +32,11 @@ class _storeDetails extends State<storeDetails> {
   List<String> titles = [
     'Discount',
     'Gift',
-
   ];
-
-
+int getcode = 0;
   List<String> dess = [
     'Include Discount 20%  from the invoice value ',
     'This offer include With every lunch there is a salad of your choice as a gift',
-
   ];
 
   final _ownerD = new TextEditingController();
@@ -67,10 +64,11 @@ class _storeDetails extends State<storeDetails> {
     ..removeWhere((e) => e == BarcodeFormat.unknown);
 
   List<BarcodeFormat> selectedFormats = [..._possibleFormats];
+
   @override
   void initState() {
     super.initState();
-
+print(getcode.toString());
     Future.delayed(Duration.zero, () async {
       _numberOfCameras = await BarcodeScanner.numberOfCameras;
       setState(() {});
@@ -167,7 +165,7 @@ class _storeDetails extends State<storeDetails> {
         ),
         ListTile(
           title:
-          Text("Aspect tolerance (${_aspectTolerance.toStringAsFixed(2)})"),
+              Text("Aspect tolerance (${_aspectTolerance.toStringAsFixed(2)})"),
           subtitle: Slider(
             min: -1.0,
             max: 1.0,
@@ -238,7 +236,7 @@ class _storeDetails extends State<storeDetails> {
       ),
     ]);
     contentList.addAll(_possibleFormats.map(
-          (format) => CheckboxListTile(
+      (format) => CheckboxListTile(
         value: selectedFormats.contains(format),
         onChanged: (i) {
           setState(() => selectedFormats.contains(format)
@@ -291,27 +289,42 @@ class _storeDetails extends State<storeDetails> {
                                       items: imagess.map((i) {
                                         return Builder(
                                           builder: (BuildContext context) {
-                                            return GestureDetector(child:  Container(
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 5.0),
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                  BorderRadius.all(
-                                                      Radius.circular(20)),
-                                                  image: DecorationImage(
-                                                    image: AssetImage(
-                                                        i.toString()),
-                                                    fit: BoxFit.fill,
-                                                  )),
-                                            ),
-                                            onTap: (){
-                                              Navigator.push(context, MaterialPageRoute(builder: (_) {
-                                                return DetailScreen(i);
-                                              }));
-                                            },);
+                                            return GestureDetector(
+                                              child: Container(
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                margin: EdgeInsets.symmetric(
+                                                    horizontal: 5.0),
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                20)),
+                                                    image: DecorationImage(
+                                                      image: AssetImage(
+                                                          i.toString()),
+                                                      fit: BoxFit.fill,
+                                                    )),
+                                              ),
+                                              onTap: () {
+                                                showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (BuildContext context) {
+                                                      return AlertDialog(
+                                                        //  title: Text("Alert Dialog"),
+                                                        contentPadding:
+                                                            EdgeInsets.zero,
+
+                                                        content: Image.asset(
+                                                          i,
+                                                          fit: BoxFit.fill,
+                                                        ),
+                                                      );
+                                                    });
+                                              },
+                                            );
                                           },
                                         );
                                       }).toList(),
@@ -454,40 +467,53 @@ class _storeDetails extends State<storeDetails> {
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                         child: Container(
-                         //   width: MediaQuery.of(context).size.width / 1.2,
+                            //   width: MediaQuery.of(context).size.width / 1.2,
                             // alignment: Alignment.bottomLeft,
 
                             // height: 60,
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                GestureDetector(onTap: (){
-                                  Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                          builder: (_) => RatingPage('1')));
-                                },child:   Container(
-                                  alignment: Alignment.center,
-                                  child: Padding(padding: EdgeInsets.all(5),child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => RatingPage('1')));
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: Padding(
+                                  padding: EdgeInsets.all(5),
+                                  child: Row(
                                     children: <Widget>[
-                                  Padding(padding:
-                                  EdgeInsets.fromLTRB(23, 0, 10, 0),child:
-                                  Text('Reviews ',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold))),new Spacer(),Padding(padding:
-                                        EdgeInsets.fromLTRB(10, 0, 10, 0),child: Icon(Icons.arrow_forward_ios,
-                                      color: Colors.orange,),)
+                                      Padding(
+                                          padding:
+                                              EdgeInsets.fromLTRB(23, 0, 10, 0),
+                                          child: Text('Reviews ',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight:
+                                                      FontWeight.bold))),
+                                      new Spacer(),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                        child: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Colors.orange,
+                                        ),
+                                      )
                                     ],
-                                  ),),
-                                ),)
-                              ,
-                                Divider(
-                                  height: 0,
-                                  color: Colors.orange,
+                                  ),
                                 ),
-                              /*  Padding(padding: EdgeInsets.all(10),
+                              ),
+                            ),
+                            Divider(
+                              height: 0,
+                              color: Colors.orange,
+                            ),
+                            /*  Padding(padding: EdgeInsets.all(10),
                                 child: Center(
                                     child: SmoothStarRating(
                                       rating: rating,
@@ -509,11 +535,9 @@ class _storeDetails extends State<storeDetails> {
                                         // print("rating value dd -> ${value.truncate()}");
                                       },
                                     )),),*/
-                              ],
-                            )),
+                          ],
+                        )),
                       ),
-
-
                       Padding(
                         padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                         child: Container(
@@ -527,61 +551,127 @@ class _storeDetails extends State<storeDetails> {
                               children: <Widget>[
                                 Container(
                                   alignment: Alignment.center,
-                                  child: Padding(padding: EdgeInsets.all(5),child: Row(
-                                    children: <Widget>[
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Text('Preview Offer',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold)) ,new Spacer(),
+                                        getcode==0?
 
-                                      Text('Preview Offer' ,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold))
-                                    ],
-                                  ),),
+                                        Visibility(visible: false,child: Row(children: <Widget>[
+                                          Padding(padding: EdgeInsets.fromLTRB(2, 0, 2, 0),
+                                            child: Text('$getcode'),),
+                                          Image.asset('assets/smi.png',height: 20,)
+                                        ],),):
+                                        Visibility(visible: true,child: Row(children: <Widget>[
+                                          Padding(padding: EdgeInsets.fromLTRB(2, 0, 2, 0),
+                                            child: Text('$getcode'),),
+                                          Image.asset('assets/smi.png',height: 20,)
+                                        ],),)
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                                Padding(padding: EdgeInsets.all(10),
-                                  child:  Container(height:250,child:
-                                  ListView.builder(
-                                      itemCount: 2,
-                                      itemBuilder: (BuildContext context, int index) {
-
-                                        return new Padding(
-                                            padding: EdgeInsets.fromLTRB(10, 5, 10, 5),child:  Container(
-                                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),border:
-                                        Border.all(width: 1,color: Colors.orange)),child:
-                                        Padding(padding: EdgeInsets.all(5),child:
-                                        Column(children: <Widget>[
-                                          Row(children: <Widget>[
-                                            Text(titles[index],style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
-                                          new Spacer(),                                Padding(padding: EdgeInsets.all(0),
-                                              child: Column(children: <Widget>[
-                                                FlatButton(
-                                                    onPressed: () {
-                                                      scan();
-                                                    },
-                                                    child: Row(
+                                Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: Container(
+                                      height: 250,
+                                      child: ListView.builder(
+                                          itemCount: 2,
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            return new Padding(
+                                                padding: EdgeInsets.fromLTRB(
+                                                    10, 5, 10, 5),
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      border: Border.all(
+                                                          width: 1,
+                                                          color:
+                                                              Colors.orange)),
+                                                  child: Padding(
+                                                    padding: EdgeInsets.all(5),
+                                                    child: Column(
                                                       children: <Widget>[
-                                                        Padding(
-                                                          padding:
-                                                          EdgeInsets.fromLTRB(3, 0, 3, 0),
-                                                          child: Icon(Icons.camera),
+                                                        Row(
+                                                          children: <Widget>[
+                                                            Text(
+                                                              titles[index],
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                            new Spacer(),
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .all(0),
+                                                              child:
+
+
+                                                              Row(children: <Widget>[
+                                                               getcode==0?
+                                                                Visibility(child: GestureDetector(child: Padding(
+                                                                  padding: EdgeInsets.fromLTRB(
+                                                                      3,
+                                                                      0,
+                                                                      3,
+                                                                      0),
+                                                                  child:
+                                                                  Icon(Icons.camera),
+                                                                ),onTap: (){
+                                                                  scan();
+                                                                },),visible: true,)
+
+                                                                   : Visibility(child: GestureDetector(child: Padding(
+                                                                 padding: EdgeInsets.fromLTRB(
+                                                                     3,
+                                                                     0,
+                                                                     3,
+                                                                     0),
+                                                                 child:
+                                                                 Icon(Icons.camera),
+                                                               ),onTap: (){
+                                                                 scan();
+                                                               },),visible: true,),
+
+
+                                                              ],)
+
+                                                            ),
+                                                          ],
                                                         ),
-
+                                                        Padding(
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(
+                                                                    0, 3, 0, 3),
+                                                            child: Text(
+                                                              dess[index],
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .greyapp),
+                                                            ))
                                                       ],
-                                                    )),
-
-                                              ],),),
-                                          ],),
-                                          Padding(padding: EdgeInsets.fromLTRB(0, 3, 0, 3),child:Text(dess[index],style: TextStyle(color: Colors.greyapp),))
-                                        ],),),));
-
-
-
-                                      })),),
+                                                    ),
+                                                  ),
+                                                ));
+                                          })),
+                                ),
                               ],
                             )),
                       ),
 
-                      Padding(
+                      /*     Padding(
                         padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                         child: Container(
                             width: MediaQuery.of(context).size.width / 1.2,
@@ -613,8 +703,7 @@ class _storeDetails extends State<storeDetails> {
 
                               ],
                             )),
-                      ),
-
+                      ),*/
                     ],
                   ),
                 );
@@ -698,8 +787,8 @@ class _storeDetails extends State<storeDetails> {
         ],
       ),
     );
-
   }
+
   Future scan() async {
     try {
       var options = ScanOptions(
@@ -718,8 +807,12 @@ class _storeDetails extends State<storeDetails> {
       );
 
       var result = await BarcodeScanner.scan(options: options);
-
-      setState(() => scanResult = result);
+      setState(() {
+        scanResult = result;
+        Toast.show('You win 5 smile ', context,
+            duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+        getcode=getcode+5;
+      });
     } on PlatformException catch (e) {
       var result = ScanResult(
         type: ResultType.Error,
@@ -739,24 +832,25 @@ class _storeDetails extends State<storeDetails> {
     }
   }
 }
+
 class DetailScreen extends StatefulWidget {
   final String ink;
+
   DetailScreen(this.ink);
+
   @override
   _DetailScreen createState() => new _DetailScreen();
 }
 
 class _DetailScreen extends State<DetailScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-      child: Image.asset(widget.ink,fit: BoxFit.fill,),
+      child: Image.asset(
+        widget.ink,
+        fit: BoxFit.fill,
+      ),
     );
   }
-
-
-
 }

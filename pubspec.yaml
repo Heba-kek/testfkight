@@ -51,6 +51,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
   flutter_launcher_icons: ^0.7.2+1
 
 flutter_icons:
@@ -79,7 +80,7 @@ flutter:
     - assets/restsi.jpg
     - assets/restt.jpg
     - assets/restth.jpg
-
+    - assets/smile.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
 

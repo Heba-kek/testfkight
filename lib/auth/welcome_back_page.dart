@@ -11,7 +11,7 @@ class  WelcomeBackPage extends StatefulWidget {
 
 class _WelcomeBackPageState extends State<WelcomeBackPage> {
   TextEditingController email =
-      TextEditingController();
+  TextEditingController();
 
   TextEditingController password = TextEditingController();
 
@@ -96,8 +96,8 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(10),
                     bottomLeft: Radius.circular(10),
-                bottomRight:Radius.circular(10),
-                topRight: Radius.circular(10))),
+                    bottomRight:Radius.circular(10),
+                    topRight: Radius.circular(10))),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
@@ -153,67 +153,59 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
       ),
     );
 
-    return Scaffold(
+    return
 
-      body: Stack(
-        children: <Widget>[
 
-          Container(
+      Scaffold(
+
+          body:Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
                 image: DecorationImage(image: AssetImage('assets/back.png'),
-                    fit: BoxFit.cover)
-            ),
+                    fit: BoxFit.fill )
+            ),child:  ListView(shrinkWrap: true,
+            children: <Widget>[
+              Column(children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(left: 28.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      //Spacer(flex: 3),
+                      Padding(padding: EdgeInsets.fromLTRB(0, 70, 0, 10),child:  welcomeBack,),
+                      // Spacer(),
+                      Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 10),child:   subTitle,),
+                      // Spacer(flex: 2),
+                      Padding(padding: EdgeInsets.fromLTRB(0, 90, 25, 10),child: Column(children: <Widget>[loginForm,
+                      ],)),
+                      // Spacer(flex: 2),
+                      Column(children: <Widget>[Padding(padding: EdgeInsets.fromLTRB(0, 80, 0, 10),
+                        child: forgotPassword,)],)
+                      ,
+                      Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                        child: GestureDetector(
+                          onTap: (){
 
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: transparentYellow,
-
-            ),
-          ),
-         SingleChildScrollView(child:Padding(padding:EdgeInsets.all(0),
-         child: ListView(children: <Widget>[Container(child: Column(children: <Widget>[
-           Padding(
-             padding: const EdgeInsets.only(left: 28.0),
-             child: Column(
-               crossAxisAlignment: CrossAxisAlignment.start,
-               children: <Widget>[
-                 //Spacer(flex: 3),
-                Padding(padding: EdgeInsets.fromLTRB(0, 70, 0, 10),child:  welcomeBack,),
-                 // Spacer(),
-           Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 10),child:   subTitle,),
-                 // Spacer(flex: 2),
-           Padding(padding: EdgeInsets.fromLTRB(0, 90, 25, 10),child: Column(children: <Widget>[loginForm,
-                   ],)),
-                 // Spacer(flex: 2),
-                 Column(children: <Widget>[Padding(padding: EdgeInsets.fromLTRB(0, 80, 0, 10),
-                 child: forgotPassword,)],)
-                     ,
-                 Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                 child: GestureDetector(
-                 onTap: (){
-
-                   showDialog(
-                       context: context,
-                       builder: (BuildContext context) {
-                         return showDialogwindowDone();
-                       });
-                 },child:
-                 Row(children: <Widget>[
-                   Text('Read Privacy Ploice',style: TextStyle(fontWeight: FontWeight.bold,
-                       color: Colors.white),)
-                 ],        mainAxisAlignment: MainAxisAlignment.center,
-                 )
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return showDialogwindowDone();
+                                });
+                          },child:
+                        Row(children: <Widget>[
+                          Text('Read Privacy Ploice',style: TextStyle(fontWeight: FontWeight.bold,
+                              color: Colors.white),)
+                        ],        mainAxisAlignment: MainAxisAlignment.center,
+                        )
 
 
-                   ,),)
-               ],
-             ),
-           )
-         ],),)],shrinkWrap: true,),) ,)
-        ],
-      ),
-    );
+                          ,),),
+                    ],
+                  ),
+                )
+              ],)],),)
+      );
   }
 
   Widget showDialogwindowDone() {

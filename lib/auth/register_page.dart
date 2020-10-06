@@ -13,7 +13,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   TextEditingController code =
-      TextEditingController();
+  TextEditingController();
 
 
 
@@ -83,8 +83,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(10),
                     bottomLeft: Radius.circular(10),
-                topRight:  Radius.circular(10),
-                bottomRight:  Radius.circular(10))),
+                    topRight:  Radius.circular(10),
+                    bottomRight:  Radius.circular(10))),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
@@ -114,56 +114,56 @@ class _RegisterPageState extends State<RegisterPage> {
 
 
 
+
     return Scaffold(
 
-              body: Stack(
-                children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                        image: DecorationImage(image: AssetImage('assets/back.png'),
-                            fit: BoxFit.cover)
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: transparentYellow,
 
-                    ),
-                  ),
+      body: Container(child:
 
 
- ListView(children: <Widget>[    Padding(
-   padding: const EdgeInsets.only(left: 28.0),
-   child: Column(
-     crossAxisAlignment: CrossAxisAlignment.start,
-     mainAxisAlignment: MainAxisAlignment.start,
-     children: <Widget>[
-       //  Spacer(flex:3),
-       Padding(padding: EdgeInsets.fromLTRB(0, 140, 0, 10),child:   title),
+      ListView(children: <Widget>[
+        Column(children: <Widget>[Padding(padding:EdgeInsets.all(10),child:  Row(children: <Widget>[IconButton(
+          color: Colors.white,
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        )],),), Padding(
+          padding: const EdgeInsets.only(left: 28.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
 
-       //Spacer(flex:2),
+              //  Spacer(flex:3),
+              Padding(padding: EdgeInsets.fromLTRB(0, 140, 0, 10),child:   title),
 
-       Padding(padding: EdgeInsets.fromLTRB(0, 90, 25, 10),child:        registerForm),
-       //Spacer(flex:2),
+              //Spacer(flex:2),
 
-     ],
-   ),
- ),],shrinkWrap: true,),
+              Padding(padding: EdgeInsets.fromLTRB(0, 90, 25, 10),child:        registerForm),
+              //Spacer(flex:2),
+
+            ],
+          ),
+        )],)
+        ,
 
 
-                  Positioned(
-                    top: 35,
-                    left: 5,
-                    child: IconButton(
-                      color: Colors.white,
-                      icon: Icon(Icons.arrow_back),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  )
-                ],
-              ),
-            );
+      ],shrinkWrap: true,),
+
+
+
+
+
+
+
+
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+            image: DecorationImage(image: AssetImage('assets/back.png'),
+                fit: BoxFit.fill )
+        ),),
+    );
   }
 }
