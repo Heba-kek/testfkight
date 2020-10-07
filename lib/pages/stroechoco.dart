@@ -5,6 +5,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:giftlink/rating/rating_dialog.dart';
 import 'package:giftlink/rating/rating_page.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
@@ -772,6 +773,12 @@ class _chocoDetails extends State<chocoDetails> {
             duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
         getcode=getcode+5;
       });
+      showDialog(
+          context: context,
+          child: Dialog(
+            shape: BeveledRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+            child: RatingDialog('2'),
+          ));
     } on PlatformException catch (e) {
       var result = ScanResult(
         type: ResultType.Error,
